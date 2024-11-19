@@ -52,7 +52,7 @@
         
         [DataTestMethod]
         [DynamicData(nameof(SetValuesToPosition))]
-        public void SetValuesToPosition__Correctly(int x, int y, string p)
+        public void SetValuesToPosition_Correctly(int x, int y, string p)
         {
             Game game = new();
             game.CreateMap();
@@ -128,6 +128,25 @@
             Assert.AreEqual(expected, actual);
 
         }
+
+        [TestMethod]
+        public void IsEndGame_Draw()
+        {
+            Game game = new();
+            game.CreateMap();
+
+            game.MakeMove(0, 0, game.GetCurrentPlayer());
+            game.MakeMove(0, 1, game.GetCurrentPlayer());
+            game.MakeMove(0, 2, game.GetCurrentPlayer());
+            game.MakeMove(1, 1, game.GetCurrentPlayer());
+            game.MakeMove(1, 0, game.GetCurrentPlayer());
+            game.MakeMove(1, 2, game.GetCurrentPlayer());
+            game.MakeMove(2, 1, game.GetCurrentPlayer());
+            game.MakeMove(2, 0, game.GetCurrentPlayer());
+            game.MakeMove(2, 2, game.GetCurrentPlayer());
+            Assert.IsTrue(game.IsEndGame());
+        }
+
 
     }
 }

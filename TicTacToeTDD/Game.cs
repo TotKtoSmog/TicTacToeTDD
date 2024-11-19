@@ -31,10 +31,12 @@
         {
             if (IsCorrectlyStep(x, y))
             {
-                _numberStep++;
                 SetValuesToPosition(x, y, p);
+                if (!IsEndGame()) _numberStep++;
+
             }
         }
         public string GetCurrentPlayer() => _numberStep % 2 == 1 ? _player1 : _player2;
+        public bool IsEndGame() => _numberStep > 9;
     }
 }
