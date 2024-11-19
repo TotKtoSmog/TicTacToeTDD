@@ -48,13 +48,12 @@
                         Board[0, i] == Board[1, i] && Board[0, i] == Board[2, i] && Board[0, i] != Filler
                         )
                         return true;
-                if (Board[0, 0] == Board[1, 1] && Board[0, 0] == Board[2, 2] && Board[0, 0] != Filler)
+                if (Board[0, 0] == Board[1, 1] && Board[0, 0] == Board[2, 2] && Board[0, 0] != Filler ||
+                    Board[0, 2] == Board[1, 1] && Board[0, 2] == Board[2, 0] && Board[0, 2] != Filler)
                     return true;
             }
             return false;
         }
-
-
 
         public string GetBoardToString()
         {
