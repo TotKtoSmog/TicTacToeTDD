@@ -255,6 +255,30 @@
 
             Assert.IsTrue(game.IsEndGame());
         }
+        [TestMethod]
+        public void IsEndGame_MainDiagonal()
+        {
+            Game game = new();
+            game.StartGame();
+
+            game.MakeMove(0, 0, game.GetCurrentPlayer());
+            game.MakeMove(0, 1, game.GetCurrentPlayer());
+            game.MakeMove(1, 1, game.GetCurrentPlayer());
+            game.MakeMove(0, 2, game.GetCurrentPlayer());
+            game.MakeMove(2, 2, game.GetCurrentPlayer());
+
+            Assert.IsTrue(game.IsEndGame());
+
+            game.StartGame();
+            game.MakeMove(2, 0, game.GetCurrentPlayer());
+            game.MakeMove(1, 1, game.GetCurrentPlayer());
+            game.MakeMove(0, 1, game.GetCurrentPlayer());
+            game.MakeMove(2, 2, game.GetCurrentPlayer());
+            game.MakeMove(1, 2, game.GetCurrentPlayer());
+            game.MakeMove(0, 0, game.GetCurrentPlayer());
+
+            Assert.IsTrue(game.IsEndGame());
+        }
 
 
 

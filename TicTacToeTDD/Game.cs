@@ -45,11 +45,15 @@
             {
                 for (int i = 0; i < 3; i++)
                     if (Board[i, 0] == Board[i, 1] && Board[i, 0] == Board[i, 2] && Board[i, 0] != Filler ||
-                        Board[0, i] == Board[1, i] && Board[0, i] == Board[2, i] && Board[0, i] != Filler)
+                        Board[0, i] == Board[1, i] && Board[0, i] == Board[2, i] && Board[0, i] != Filler
+                        )
                         return true;
+                if (Board[0, 0] == Board[1, 1] && Board[0, 0] == Board[2, 2] && Board[0, 0] != Filler)
+                    return true;
             }
             return false;
         }
+
 
 
         public string GetBoardToString()
