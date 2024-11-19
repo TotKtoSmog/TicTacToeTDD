@@ -5,6 +5,7 @@
         private const string Filler = "■";
         private const string _player1 = "X";
         private const string _player2 = "0";
+        private const int x = 3, y = 3;
 
         private int _numberStep = 1;
 
@@ -38,5 +39,18 @@
         }
         public string GetCurrentPlayer() => _numberStep % 2 == 1 ? _player1 : _player2;
         public bool IsEndGame() => _numberStep > 9;
+        public string GetBoardToString()
+        {
+            string result = "";
+
+            for (int i = 0; i < x; i++)
+            {
+                for (int j = 0; j < y; j++)
+                    result += Board[i, j];
+                result += "\n";
+            }
+            return result;
+        }
+
     }
 }

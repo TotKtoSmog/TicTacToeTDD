@@ -146,6 +146,49 @@
             game.MakeMove(2, 2, game.GetCurrentPlayer());
             Assert.IsTrue(game.IsEndGame());
         }
+        [TestMethod]
+        public void GetBoardToString_Update()
+        {
+            Game game = new();
+            game.CreateMap();
+
+            game.MakeMove(0, 0, game.GetCurrentPlayer());
+            string expected = "X■■\n■■■\n■■■\n";
+            Assert.AreEqual(expected, game.GetBoardToString());
+
+            game.MakeMove(0, 1, game.GetCurrentPlayer());
+            expected = "X0■\n■■■\n■■■\n";
+            Assert.AreEqual(expected, game.GetBoardToString());
+
+            game.MakeMove(0, 2, game.GetCurrentPlayer());
+            expected = "X0X\n■■■\n■■■\n";
+            Assert.AreEqual(expected, game.GetBoardToString());
+
+            game.MakeMove(1, 1, game.GetCurrentPlayer());
+            expected = "X0X\n■0■\n■■■\n";
+            Assert.AreEqual(expected, game.GetBoardToString());
+
+            game.MakeMove(1, 0, game.GetCurrentPlayer());
+            expected = "X0X\nX0■\n■■■\n";
+            Assert.AreEqual(expected, game.GetBoardToString());
+
+            game.MakeMove(1, 2, game.GetCurrentPlayer());
+            expected = "X0X\nX00\n■■■\n";
+            Assert.AreEqual(expected, game.GetBoardToString());
+
+            game.MakeMove(2, 1, game.GetCurrentPlayer());
+            expected = "X0X\nX00\n■X■\n";
+            Assert.AreEqual(expected, game.GetBoardToString());
+
+            game.MakeMove(2, 0, game.GetCurrentPlayer());
+            expected = "X0X\nX00\n0X■\n";
+            Assert.AreEqual(expected, game.GetBoardToString());
+
+            game.MakeMove(2, 2, game.GetCurrentPlayer());
+            expected = "X0X\nX00\n0XX\n";
+            Assert.AreEqual(expected, game.GetBoardToString());
+        }
+
 
 
     }
