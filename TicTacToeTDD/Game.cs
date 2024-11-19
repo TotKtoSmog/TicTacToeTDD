@@ -2,6 +2,7 @@
 {
     public class Game
     {
+        private const string Filler = "■";
         public string[,] Board = new string[3, 3];
         public string CreateMap()
         {
@@ -19,5 +20,7 @@
         }
         public string GetValuesToPosition(int x, int y) => Board[x, y];
         public void SetValuesToPosition(int x, int y, string p) => Board[x, y] = p;
+        public bool IsCorrectlyStep(int x, int y) => GetValuesToPosition(x, y) == Filler;
+
     }
 }

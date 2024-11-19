@@ -63,5 +63,27 @@
             Assert.AreEqual(p, actual);
         }
 
+        [TestMethod]
+        public void IsCorrectlyStep_Correctly()
+        {
+            Game game = new();
+            game.CreateMap();
+
+            bool actual = game.IsCorrectlyStep(0, 0);
+            Assert.IsTrue(actual);
+
+            game.SetValuesToPosition(0, 0, "X");
+            actual = game.IsCorrectlyStep(0, 0);
+            Assert.IsFalse(actual);
+
+            actual = game.IsCorrectlyStep(1, 1);
+            Assert.IsTrue(actual);
+
+            game.SetValuesToPosition(1, 1, "0");
+            actual = game.IsCorrectlyStep(0, 0);
+            Assert.IsFalse(actual);
+        }
+
+
     }
 }
