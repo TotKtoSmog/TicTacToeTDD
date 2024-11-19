@@ -1,7 +1,7 @@
 namespace TicTacToeTDD.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class GameTest
     {
         [TestMethod]
         public void TestMethod1()
