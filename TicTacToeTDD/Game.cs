@@ -19,6 +19,7 @@
             { 9, new int[] { 2, 2 } },
         };
 
+        private string statusGame = "";
         private int _numberStep = 1;
 
         public string[,] Board = new string[3, 3];
@@ -52,20 +53,34 @@
         public string GetCurrentPlayer() => _numberStep % 2 == 1 ? _player1 : _player2;
         public bool IsEndGame()
         {
-            if (_numberStep > 9) return true;
+            if (_numberStep > 9)
+            {
+                statusGame = "Ничья!";
+                return true;
+            }
             else
             {
                 for (int i = 0; i < 3; i++)
                     if (Board[i, 0] == Board[i, 1] && Board[i, 0] == Board[i, 2] && Board[i, 0] != Filler ||
                         Board[0, i] == Board[1, i] && Board[0, i] == Board[2, i] && Board[0, i] != Filler
                         )
+                    {
+                        statusGame = $"Победил {GetCurrentPlayer()}!";
                         return true;
+                    }
+
                 if (Board[0, 0] == Board[1, 1] && Board[0, 0] == Board[2, 2] && Board[0, 0] != Filler ||
                     Board[0, 2] == Board[1, 1] && Board[0, 2] == Board[2, 0] && Board[0, 2] != Filler)
+                {
+                    statusGame = $"Победил {GetCurrentPlayer()}!";
                     return true;
+                }
             }
+            statusGame = $"Идёт игра!";
             return false;
         }
+        
+
 
         public string GetBoardToString()
         {
@@ -81,6 +96,7 @@
         }
         public void StartGame()
         {
+            statusGame = "Игра началась !";
             CreateMap();
             _numberStep = 1;
         }
@@ -91,6 +107,7 @@
             else
                 MakeMove(-1, -1, GetCurrentPlayer());
         }
+        public string GetStatusGame() => statusGame;
 
     }
 }

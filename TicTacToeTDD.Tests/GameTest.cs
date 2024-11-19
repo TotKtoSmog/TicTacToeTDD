@@ -158,6 +158,7 @@
             game.MakeMove(2, 2, game.GetCurrentPlayer());
             Assert.IsTrue(game.IsEndGame());
         }
+
         [TestMethod]
         public void GetBoardToString_Update()
         {
@@ -200,6 +201,7 @@
             expected = "X0X\nX00\n0XX\n";
             Assert.AreEqual(expected, game.GetBoardToString());
         }
+
         [TestMethod]
         public void StartGame_Update()
         {
@@ -217,6 +219,7 @@
             expected = "■■■\n■■■\n■■■\n";
             Assert.AreEqual(expected, game.GetBoardToString());
         }
+
         [TestMethod]
         public void IsEndGame_Horizontal()
         {
@@ -241,6 +244,7 @@
 
             Assert.IsTrue(game.IsEndGame());
         }
+
         [TestMethod]
         public void IsEndGame_Vertical()
         {
@@ -267,6 +271,7 @@
 
             Assert.IsTrue(game.IsEndGame());
         }
+
         [TestMethod]
         public void IsEndGame_MainDiagonal()
         {
@@ -291,6 +296,7 @@
 
             Assert.IsTrue(game.IsEndGame());
         }
+
         [TestMethod]
         public void IsEndGame_SideDiagonal()
         {
@@ -316,7 +322,6 @@
             Assert.IsTrue(game.IsEndGame());
         }
 
-        
         [DataTestMethod]
         [DynamicData(nameof(SetPlayerStep))]
         public void SetPlayerStep_Update(int n, string e)
@@ -328,6 +333,35 @@
             string actual = game.GetBoardToString();
 
             Assert.AreEqual(e, actual);
+        }
+
+        [TestMethod]
+        public void GetStatusGame_Update()
+        {
+            Game game = new();
+            game.StartGame();
+
+            string actual = game.GetStatusGame();
+            string expected = "Игра началась !";
+
+            Assert.AreEqual(expected, actual);
+
+            game.PlayerStep(1);
+
+            actual = game.GetStatusGame();
+            expected = "Идёт игра!";
+
+            Assert.AreEqual(expected, actual);
+            game.PlayerStep(2);
+
+            game.PlayerStep(4);
+            game.PlayerStep(3);
+            game.PlayerStep(7);
+
+            actual = game.GetStatusGame();
+            expected = "Победил X!";
+
+            Assert.AreEqual(expected, actual);
         }
 
 
