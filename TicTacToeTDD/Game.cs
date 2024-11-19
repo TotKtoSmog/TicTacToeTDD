@@ -22,5 +22,12 @@
         public void SetValuesToPosition(int x, int y, string p) => Board[x, y] = p;
         public bool IsCorrectlyStep(int x, int y) => GetValuesToPosition(x, y) == Filler;
 
+        public void MakeMove(int x, int y, string p)
+        {
+            if (IsCorrectlyStep(x, y))
+                SetValuesToPosition(x, y, p);
+        }
+
+
     }
 }

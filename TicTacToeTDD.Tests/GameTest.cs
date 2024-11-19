@@ -84,6 +84,24 @@
             Assert.IsFalse(actual);
         }
 
+        [DataTestMethod]
+        [DataRow(0, 0, "X", "X")]
+        [DataRow(1, 1, "X", "0")]
+        [DataRow(2, 2, "0", "0")]
+        public void MakeMove_UpdatesBoardCorrectly(int x, int y, string p, string expected)
+        {
+            Game game = new();
+            game.CreateMap();
+            game.MakeMove(1, 1, "0");
+            game.MakeMove(x, y, p);
+
+            string actual = game.GetValuesToPosition(x, y);
+
+            Assert.AreEqual(expected, actual);
+
+        }
+
+
 
     }
 }
