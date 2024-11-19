@@ -51,6 +51,11 @@
             }
             return result;
         }
+        public void StartGame()
+        {
+            CreateMap();
+            _numberStep = 1;
+        }
 
     }
 }

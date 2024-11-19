@@ -188,6 +188,23 @@
             expected = "X0X\nX00\n0XX\n";
             Assert.AreEqual(expected, game.GetBoardToString());
         }
+        [TestMethod]
+        public void StartGame_Update()
+        {
+            Game game = new();
+            game.StartGame();
+
+            game.MakeMove(0, 0, game.GetCurrentPlayer());
+            string expected = "X■■\n■■■\n■■■\n";
+            Assert.AreEqual(expected, game.GetBoardToString());
+
+            game.MakeMove(0, 1, game.GetCurrentPlayer());
+            game.MakeMove(0, 2, game.GetCurrentPlayer());
+            game.StartGame();
+
+            expected = "■■■\n■■■\n■■■\n";
+            Assert.AreEqual(expected, game.GetBoardToString());
+        }
 
 
 
