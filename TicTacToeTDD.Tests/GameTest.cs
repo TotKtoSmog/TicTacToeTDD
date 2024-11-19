@@ -25,15 +25,27 @@
         ];
         public static IEnumerable<object[]> SetValuesToPosition =>
         [
-                [0, 0, "X"],
-                [0, 1, "■"],
-                [0, 2, "0"],
-                [1, 0, "■"],
-                [1, 1, "X"],
-                [1, 2, "■"],
-                [2, 0, "0"],
-                [2, 1, "■"],
-                [2, 2, "X"],
+            [0, 0, "X"],
+            [0, 1, "■"],
+            [0, 2, "0"],
+            [1, 0, "■"],
+            [1, 1, "X"],
+            [1, 2, "■"],
+            [2, 0, "0"],
+            [2, 1, "■"],
+            [2, 2, "X"],
+        ];
+        public static IEnumerable<object[]> SetPlayerStep =>
+        [
+            [1,"X■■\n■■■\n■■■\n"],
+            [2,"■X■\n■■■\n■■■\n"],
+            [3,"■■X\n■■■\n■■■\n"],
+            [4,"■■■\nX■■\n■■■\n"],
+            [5,"■■■\n■X■\n■■■\n"],
+            [6,"■■■\n■■X\n■■■\n"],
+            [7,"■■■\n■■■\nX■■\n"],
+            [8,"■■■\n■■■\n■X■\n"],
+            [9,"■■■\n■■■\n■■X\n"],
         ];
 
         [DataTestMethod]
@@ -304,6 +316,19 @@
             Assert.IsTrue(game.IsEndGame());
         }
 
+        
+        [DataTestMethod]
+        [DynamicData(nameof(SetPlayerStep))]
+        public void SetPlayerStep_Update(int n, string e)
+        {
+            Game game = new();
+            game.StartGame();
+            game.PlayerStep(n);
+
+            string actual = game.GetBoardToString();
+
+            Assert.AreEqual(e, actual);
+        }
 
 
     }

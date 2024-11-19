@@ -6,6 +6,18 @@
         private const string _player1 = "X";
         private const string _player2 = "0";
         private const int x = 3, y = 3;
+        private readonly Dictionary<int, int[]> _map = new Dictionary<int, int[]>
+        {
+            { 1, new int[] { 0, 0 } },
+            { 2, new int[] { 0, 1 } },
+            { 3, new int[] { 0, 2 } },
+            { 4, new int[] { 1, 0 } },
+            { 5, new int[] { 1, 1 } },
+            { 6, new int[] { 1, 2 } },
+            { 7, new int[] { 2, 0 } },
+            { 8, new int[] { 2, 1 } },
+            { 9, new int[] { 2, 2 } },
+        };
 
         private int _numberStep = 1;
 
@@ -71,6 +83,13 @@
         {
             CreateMap();
             _numberStep = 1;
+        }
+        public void PlayerStep(int n)
+        {
+            if (_map.ContainsKey(n))
+                MakeMove(_map[n][0], _map[n][1], GetCurrentPlayer());
+            else
+                MakeMove(-1, -1, GetCurrentPlayer());
         }
 
     }
