@@ -18,5 +18,6 @@
             return result;
         }
         public string GetValuesToPosition(int x, int y) => Board[x, y];
+        public void SetValuesToPosition(int x, int y, string p) => Board[x, y] = p;
     }
 }

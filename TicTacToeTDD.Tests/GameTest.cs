@@ -23,6 +23,18 @@
             [2, 1, "■"],
             [2, 2, "■"],
         ];
+        public static IEnumerable<object[]> SetValuesToPosition =>
+        [
+                [0, 0, "X"],
+                [0, 1, "■"],
+                [0, 2, "0"],
+                [1, 0, "■"],
+                [1, 1, "X"],
+                [1, 2, "■"],
+                [2, 0, "0"],
+                [2, 1, "■"],
+                [2, 2, "X"],
+        ];
 
         [DataTestMethod]
         [DynamicData(nameof(GetValuesToPosition))]
@@ -37,6 +49,19 @@
             Assert.AreEqual(p, actual);
         }
 
+        
+        [DataTestMethod]
+        [DynamicData(nameof(SetValuesToPosition))]
+        public void SetValuesToPosition__Correctly(int x, int y, string p)
+        {
+            Game game = new();
+            game.CreateMap();
+            game.SetValuesToPosition(x, y, p);
+
+            string actual = game.GetValuesToPosition(x, y);
+
+            Assert.AreEqual(p, actual);
+        }
 
     }
 }
