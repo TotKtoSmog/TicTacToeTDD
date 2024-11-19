@@ -101,7 +101,33 @@
 
         }
 
+        [TestMethod]
+        public void GetCurrentPlayer_Update()
+        {
+            Game game = new();
+            game.CreateMap();
 
+            string actual = game.GetCurrentPlayer();
+
+            string expected = "X";
+
+            Assert.AreEqual(expected, actual);
+
+            game.MakeMove(0, 0, actual);
+
+            actual = game.GetCurrentPlayer();
+            expected = "0";
+
+            Assert.AreEqual(expected, actual);
+
+            game.MakeMove(0, 0, actual);
+
+            actual = game.GetCurrentPlayer();
+            expected = "0";
+
+            Assert.AreEqual(expected, actual);
+
+        }
 
     }
 }

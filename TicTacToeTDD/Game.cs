@@ -3,6 +3,11 @@
     public class Game
     {
         private const string Filler = "■";
+        private const string _player1 = "X";
+        private const string _player2 = "0";
+
+        private int _numberStep = 1;
+
         public string[,] Board = new string[3, 3];
         public string CreateMap()
         {
@@ -25,9 +30,11 @@
         public void MakeMove(int x, int y, string p)
         {
             if (IsCorrectlyStep(x, y))
+            {
+                _numberStep++;
                 SetValuesToPosition(x, y, p);
+            }
         }
-
-
+        public string GetCurrentPlayer() => _numberStep % 2 == 1 ? _player1 : _player2;
     }
 }
