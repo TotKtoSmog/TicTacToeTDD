@@ -99,7 +99,9 @@
             statusGame = "Игра началась !";
             CreateMap();
             _numberStep = 1;
+            Update();
         }
+
         public void PlayerStep(int n)
         {
             if (_map.ContainsKey(n))
@@ -108,6 +110,21 @@
                 MakeMove(-1, -1, GetCurrentPlayer());
         }
         public string GetStatusGame() => statusGame;
+        public void Update()
+        {
+            while (!IsEndGame())
+            {
+                Console.Clear();
+                Console.WriteLine(statusGame);
+                Console.WriteLine(GetBoardToString());
+                int n = Convert.ToInt32(Console.ReadLine());
+                PlayerStep(n);
+            }
+            Console.Clear();
+            Console.WriteLine(statusGame);
+            Console.WriteLine(GetBoardToString());
+
+        }
 
     }
 }
