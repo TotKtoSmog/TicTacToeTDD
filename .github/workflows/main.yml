@@ -1,0 +1,40 @@
+name: .NET CI
+
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+      
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore 
+      
+    - name: Build the project
+      run: dotnet build --configuration ${{ matrix.configuration }} --no-restore
+      
+    - name: Run unit tests
+      run: dotnet test TicTacToeTDD.Tests/TicTacToeTDD.Tests.csproj --configuration ${{ matrix.configuration }} --no-restore --logger trx --collect:"XPlat Code Coverage"
+
+    - name: Publish test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results-${{ matrix.configuration }}
+        path: '**/TestResults/*.trx'
