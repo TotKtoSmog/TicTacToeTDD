@@ -38,7 +38,18 @@
             }
         }
         public string GetCurrentPlayer() => _numberStep % 2 == 1 ? _player1 : _player2;
-        public bool IsEndGame() => _numberStep > 9;
+        public bool IsEndGame()
+        {
+            if (_numberStep > 9) return true;
+            else
+            {
+                for (int i = 0; i < 3; i++)
+                    if (Board[i, 0] == Board[i, 1] && Board[i, 0] == Board[i, 2] && Board[i, 0] != Filler)
+                        return true;
+            }
+            return false;
+        }
+
         public string GetBoardToString()
         {
             string result = "";
